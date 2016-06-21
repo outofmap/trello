@@ -1,0 +1,85 @@
+@import url('http://fonts.googleapis.com/earlyaccess/hanna.css');
+
+#header{
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  color: rgba(0,0,0,0.5);
+  line-height: 40px;
+  text-align: center;
+  font-weight: 700;
+  font-family: 'Hanna', serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.login_form_wrapper{
+  width: 50%;
+  height: 700px;
+  margin:  0 auto;
+}
+
+.login_form_wrapper .login_title{
+
+  margin: 3em auto 1em auto;
+  width: 300px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "jaf-facitweb","Helvetica Neue",Arial,sans-serif;
+  color: rgba(0,0,0,0.6);
+
+}
+
+.login_form_wrapper .login_with_github{
+
+  margin: 0 auto 2em auto;
+  width: 300px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: normal;
+  font-family: "jaf-facitweb","Helvetica Neue",Arial,sans-serif;
+  color: rgba(0,0,0,.4);
+  text-align: center;
+  cursor: pointer;
+
+}
+
+.login_form_wrapper .option_boundary{
+/*  border:1px solid black;*/
+margin-bottom: 2em;
+}
+
+.login_form_wrapper .option_boundary span{
+  margin-left: 10px;
+  margin-right: 10px;
+  color: gray;
+}
+
+.login_form_wrapper .option_boundary .underline{
+  width: 45%;
+  border-bottom: 1px solid gray;
+  display: inline-block;
+
+}
+
+.login_form_wrapper .row{
+  width: 300px;
+}
+
+.login_form_wrapper .btn_area{
+  margin: 0 auto;
+  width: 300px;
+  padding: 0 0 0 30px;
+}
+
+.login_form_wrapper .btn_area .login_btn, .login_form_wrapper .btn_area .signUp_btn{
+  width: 100px;
+  display: inline-block;
+  padding: 5px;
+  margin-right: 2em;
+  text-align: center;
+  color: rgba(0,0,0,.4);
+  font-weight: normal;
+  cursor: pointer;
+}

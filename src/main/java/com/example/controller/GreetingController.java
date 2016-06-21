@@ -13,4 +13,14 @@ public class GreetingController {
 		model.addAttribute("name", name);
 		return "greeting";
 	}
+	
+	@RequestMapping("/")
+	public String index(){
+		return "index";
+	}
+	
+	@RequestMapping("/project")
+	public String show() {
+		return "projectMain";
+	}
 }

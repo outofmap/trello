@@ -25,14 +25,18 @@ repositories {
 	mavenCentral()
 }
 
+bootRun {
+    addResources = true
+}
 
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("com.h2database:h2")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile ("org.thymeleaf:thymeleaf-spring4:3.0.0.RELEASE")
     compile ("org.thymeleaf:thymeleaf:3.0.0.RELEASE")
     compile("org.springframework.boot:spring-boot-devtools")
+    compile("com.h2database:h2")
+   	compile("org.projectlombok:lombok:1.16.8")
     testCompile("junit:junit")
 }

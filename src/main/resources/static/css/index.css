@@ -1,0 +1,38 @@
+@import url('http://fonts.googleapis.com/earlyaccess/hanna.css');
+
+#main_logo{
+
+  width: 1000px;
+  height: 40px;
+  background-color: white;
+  color: rgba(0,0,0,0.5);
+  line-height: 40px;
+  font-weight: 700;
+  font-family: 'Hanna', serif;
+  font-size: 100px;
+  margin: 200px auto 0 auto;
+  text-align: center;
+  letter-spacing: 10px;
+}
+
+.nav{
+
+	width: 300px;
+	height: 100px;
+	margin:200px auto 0 auto;
+
+}
+
+.nav #login a{
+
+	width: 120px;
+	height: 38px;
+	float: left;
+}
+
+.nav #signUp a{
+	width: 120px;
+	height: 38px;
+	float: left;
+	margin-left: 58px;
+}

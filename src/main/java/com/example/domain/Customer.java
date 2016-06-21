@@ -19,6 +19,7 @@ public class Customer {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+    
 
     @Override
     public String toString() {

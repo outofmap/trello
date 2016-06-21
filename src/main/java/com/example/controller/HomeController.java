@@ -14,6 +14,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/customers")
 	public Iterable<Customer> showCustomers() {
-		return cr.findAll();
+		return cr.findByLastName("Bauer");
 	}
+	
 }
