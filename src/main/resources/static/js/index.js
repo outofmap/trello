@@ -26,10 +26,18 @@ var TODO = (function (window){
 
 		var project_name = $("#add_project").val();
 		var str = board_btn.replace(/\{\{input-value\}\}/gi,project_name);
-		$(".add_project").before(str);
-		$("#add_project").val("");
-		$(".add_project_form").css('display','none');
-		$(".btn-floating").css('display','block');
+		
+		$.ajax({
+			url: "/api/boards",
+			data:{name: project_name},
+			type:"post",
+		}).done(function (data, status) {
+			$(".add_project").before(str); //board추가 UI
+			$("#add_project").val("");
+			$(".add_project_form").css('display','none');
+			$(".btn-floating").css('display','block');
+			
+		}
 	}
 
 	function create_new_project(){
@@ -43,11 +51,9 @@ var TODO = (function (window){
 		window.location.href = ("page.html");
 	}
 
-	function create_board(){
-
-
-		$("#boards_list").prepend(board_btn);
-	}
+//	function create_board(){
+//		$("#boards_list").prepend(board_btn);
+//	}
 	
 
 	return {

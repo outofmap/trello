@@ -38,5 +38,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-devtools")
     compile("com.h2database:h2")
    	compile("org.projectlombok:lombok:1.16.8")
+   	compile(group: 'io.springfox', name: 'springfox-swagger2', version: '2.4.0')
+   	compile(group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.4.0')
     testCompile("junit:junit")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 }

@@ -1,28 +1,22 @@
 package com.example.domain;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
 @Data
 @Entity
-public class Card {
-	
+public class Deck {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long cardId;
-	private String title;
-	private String writer;
-	private String description;
-	//private List<User> assignee;
-	private String due;
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long deckId;
+	private String deckName;
 	private Integer order;
+	private long boardId;
 	
-
+	
 }

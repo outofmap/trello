@@ -17,4 +17,9 @@ public class HomeController {
 		return cr.findByLastName("Bauer");
 	}
 	
+	@RequestMapping("/")
+	public String index(){
+		return "index";
+	}
+	
 }
