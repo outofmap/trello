@@ -5,10 +5,11 @@ var TODO = (function (window){
 	 var board_btn = " <li class='board waves-effect waves-light btn'>" +		
 	 						"{{input-value}}" +
 	 					"</li>"
-
+	var baseUrl = "http://localhost:8080";
+	 
 	function init(){
 
-		$("#boards_list").on("click", ".board", page_nav);
+		//$("#boards_list").on("click", ".board", page_nav);
 		$("#create_board").on("click", create_board);
 		$(".add_project_btn").on("click", create_new_project);
 		$(".save").on("click", add_project);
@@ -23,21 +24,25 @@ var TODO = (function (window){
 	}
 
 	function add_project(){
-
-		var project_name = $("#add_project").val();
-		var str = board_btn.replace(/\{\{input-value\}\}/gi,project_name);
 		
+		var project_name = $("#add_project").val();
+		var str = board_btn.replace(/\{\{input-value\}\}/gi, project_name);
+		var data = JSON.stringify({name:project_name});
+		console.log("data:"+data);
 		$.ajax({
-			url: "/api/boards",
-			data:{name: project_name},
-			type:"post",
+		    contentType : "application/json; charset=UTF-8",
+			url: baseUrl+"/api/boards",
+			data: data,
+			dataType:'json',
+			type:"post"
 		}).done(function (data, status) {
-			$(".add_project").before(str); //board추가 UI
+			$(".add_project").before(str); 				//board추가 UI
 			$("#add_project").val("");
 			$(".add_project_form").css('display','none');
 			$(".btn-floating").css('display','block');
-			
-		}
+		}).fail(function (data,status){
+			console.log("failed");
+		})
 	}
 
 	function create_new_project(){
@@ -51,9 +56,9 @@ var TODO = (function (window){
 		window.location.href = ("page.html");
 	}
 
-//	function create_board(){
-//		$("#boards_list").prepend(board_btn);
-//	}
+	function create_board(){
+		$("#boards_list").prepend(board_btn);
+	}
 	
 
 	return {

@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+@NoArgsConstructor      
 @Data
 @Entity
 public class Board {

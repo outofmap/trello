@@ -36,6 +36,5 @@ public class BoardWebIntegrationTest extends WebIntegrationTest {
 		Board b = new Board("first");
 		ResponseEntity<Board> re = restTemplate.postForEntity(baseUrl()+"/api/boards", b, Board.class);
 		assertThat(re.getStatusCode(), is(HttpStatus.CREATED));
-//		logger.debug("create board()",actual);
 	}
 }
