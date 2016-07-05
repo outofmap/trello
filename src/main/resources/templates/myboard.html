@@ -14,7 +14,7 @@
 		       	 새로운 보드 만들어 할 일을 관리하세요!
 	        </ul>
 	       <ul th:each="board:${boards}" >
-	         <a href="#">
+	         <a th:href="@{'/boards/'+${board.boardId}}">
 	         <li th:text="${board.name}" class="board project_1 waves-effect waves-light btn"></li>
 	         </a>
 	       </ul>

@@ -17,17 +17,18 @@ import com.example.domain.Board;
 import com.example.domain.BoardRepository;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/boards")
 public class ApiBoardController {
 	private static final Logger logger = LoggerFactory.getLogger(ApiBoardController.class);
 	@Autowired
 	BoardRepository br;
 	
-	@RequestMapping(value= "/boards", method = RequestMethod.POST)
+	@RequestMapping(value= "", method = RequestMethod.POST)
 	public ResponseEntity<Board> createBoard(@RequestBody Board board){
 		logger.debug("board:"+board);
 		Board saved = br.save(board);
 		return new ResponseEntity<Board>(saved, HttpStatus.CREATED);
 	}
+	
 	
 }

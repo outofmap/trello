@@ -2,9 +2,9 @@ var TODO = (function (window){
 
 	 'use strict';
 
-	 var board_btn = " <li class='board waves-effect waves-light btn'>" +		
+	 var board_btn = "<a href=/boards/"+"{{boardId}}"+">"+ "<li class='board waves-effect waves-light btn'>" +		
 	 						"{{input-value}}" +
-	 					"</li>"
+	 					"</li>"+"</a>";
 	var baseUrl = "http://localhost:8080";
 	 
 	function init(){
@@ -31,12 +31,16 @@ var TODO = (function (window){
 		console.log("data:"+data);
 		$.ajax({
 		    contentType : "application/json; charset=UTF-8",
-			url: baseUrl+"/api/boards",
+			url: baseUrl+"/boards",
 			data: data,
 			dataType:'json',
 			type:"post"
 		}).done(function (data, status) {
-			$(".add_project").before(str); 				//board추가 UI
+			console.log(data);
+			console.log(data.boardId);
+			var boardId = data.boardId;
+			var newboard = str.replace(/\{\{boardId\}\}/gi,boardId);
+			$(".add_project").before(newboard); 				//board추가 UI
 			$("#add_project").val("");
 			$(".add_project_form").css('display','none');
 			$(".btn-floating").css('display','block');
