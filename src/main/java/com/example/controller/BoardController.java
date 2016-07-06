@@ -21,14 +21,12 @@ public class BoardController {
 	@RequestMapping(value="/boards", method=RequestMethod.GET)
 	public String showAll(Model model) {
 		Iterable<Board>boards = br.findAll();
-		System.out.println(boards.toString());
 		model.addAttribute("boards", boards);
 		return "myboard";
 	}
 	
 	@RequestMapping(value="/boards/{boardId}", method=RequestMethod.GET)
 	public String showBoard(@PathVariable Long boardId){
-		System.out.println("in");
 		return "board";
 	}
 }

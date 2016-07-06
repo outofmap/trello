@@ -9,7 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Data
 @Entity
 public class User {
@@ -19,8 +21,11 @@ public class User {
 	private String email;
 	private String userName;
 	private String password;
-	@ManyToMany
-	private List<Board> boards;
 	
+	public User(String email, String userName, String password) {
+		this.email = email;
+		this.userName = userName;
+		this.password = password;
+	}
 	
 }

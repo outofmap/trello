@@ -16,36 +16,35 @@
     <body>
 
       <div id="header" class="z-depth-1">JWP-Trello</div>
-
       <div class="login_form_wrapper">
-
+		<form action="/signUp" method="post">
           <div class="signUp_title">Create a Account</div>
 
           <div class="row">
               <div class="input-field col s12">
-                <input id="user_name" type="text" class="validate">
+                <input id="user_name" type="text" class="validate" name="userName">
                 <label for="user_name">Username</label>
               </div>
           </div>
 
           <div class="row">
               <div class="input-field col s12">
-                  <input id="email" type="email" class="validate">
+                  <input id="email" type="email" class="validate" name="email">
                   <label for="email">Email</label>
                 </div>
-              </div>
+          </div>
 
          <div class="row">
               <div class="input-field col s12">
-                <input id="password" type="password" class="validate">
+                <input id="password" type="password" class="validate" name="password">
                 <label for="password">Password</label>
               </div>
          </div>
-            <div class="btn_area">
-               <div class="signUp_btn z-depth-1 blue-grey lighten-5">SignUp</div>
-            </div>
+         <div class="btn_area">
+               <button type="submit" class="signUp_btn z-depth-1 blue-grey lighten-5">Sign Up</button>
          </div>
-
+		</form>
+        </div>
       <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
       <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="lib/handlebars-v4.0.5.js"></script>

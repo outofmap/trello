@@ -9,9 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.domain.Customer;
 import com.example.domain.CustomerRepository;
+import com.example.domain.User;
+import com.example.domain.UserRepository;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -44,37 +47,36 @@ public class TrelloApplication {
     }
 	
 	@Bean
-	public CommandLineRunner demo(CustomerRepository repository) {
+	public CommandLineRunner demo(UserRepository repository) {
 		return (args) -> {
 			// save a couple of customers
-			repository.save(new Customer("Jack", "Bauer"));
-			repository.save(new Customer("Chloe", "O'Brian"));
-			repository.save(new Customer("Kim", "Bauer"));
-			repository.save(new Customer("David", "Palmer"));
-			repository.save(new Customer("Michelle", "Dessler"));
-
+			repository.save(new User("test@t.com", "테스트유저","ps123"));
 			// fetch all customers
 			log.info("Customers found with findAll():");
 			log.info("-------------------------------");
-			for (Customer customer : repository.findAll()) {
-				log.info(customer.toString());
+			for(User user: repository.findAll()) {
+				log.info(user.toString());
 			}
-            log.info("");
 
 			// fetch an individual customer by ID
-			Customer customer = repository.findOne(1L);
-			log.info("Customer found with findOne(1L):");
-			log.info("--------------------------------");
-			log.info(customer.toString());
-            log.info("");
+//			Customer customer = repository.findOne(1L);
+//			log.info("Customer found with findOne(1L):");
+//			log.info("--------------------------------");
+//			log.info(customer.toString());
+//            log.info("");
 
 			// fetch customers by last name
-			log.info("Customer found with findByLastName('Bauer'):");
-			log.info("--------------------------------------------");
-			for (Customer bauer : repository.findByLastName("Bauer")) {
-				log.info(bauer.toString());
-			}
-            log.info("");
+//			log.info("Customer found with findByLastName('Bauer'):");
+//			log.info("--------------------------------------------");
+//			for (Customer bauer : repository.findByLastName("Bauer")) {
+//				log.info(bauer.toString());
+//			}
+//            log.info("");
 		};
+	}
+	
+	@Bean
+	public BCryptPasswordEncoder bcrypt(){
+		return new BCryptPasswordEncoder();
 	}
 }
