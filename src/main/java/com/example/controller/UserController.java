@@ -20,6 +20,8 @@ public class UserController {
 	@Autowired
 	BCryptPasswordEncoder bcrypt;
 	
+	
+	
 	@RequestMapping(value="/signUp", method=RequestMethod.GET)
 	public String showSignUp(){
 		return "signUp";

@@ -24,4 +24,5 @@ public class Board {
 		this.name = name;
 	}
 	
+	
 }
