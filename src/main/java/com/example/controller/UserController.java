@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,7 @@ public class UserController {
 	BoardRepository br;
 	@Autowired
 	BCryptPasswordEncoder bcrypt;
-	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	
 	@RequestMapping(value="/signUp", method=RequestMethod.GET)
@@ -32,23 +34,14 @@ public class UserController {
 		String encodedPassword = bcrypt.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 		userRepo.save(user);
+		logger.info("saved"+user.toString());
 		return "index";
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	@RequestMapping(value="/loginpage", method=RequestMethod.GET)
 	public String showLogin(){
 		return "login";
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(User user, Model model){
-		User found = userRepo.findByEmail(user.getEmail());
-		if(bcrypt.matches(user.getPassword(), found.getPassword())){
-			model.addAttribute("boards", br.findAll());
-			return "myboard";
-		} else {
-			return "login";
-		}
-	}
 	
 }

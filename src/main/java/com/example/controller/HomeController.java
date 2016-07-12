@@ -10,13 +10,6 @@ import com.example.domain.CustomerRepository;
 
 @Controller
 public class HomeController {
-	@Autowired
-	CustomerRepository cr;
-
-	@RequestMapping(value = "/customers")
-	public Iterable<Customer> showCustomers() {
-		return cr.findByLastName("Bauer");
-	}
 	
 	@RequestMapping("/")
 	public String index(){
