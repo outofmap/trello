@@ -10,9 +10,12 @@ import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfigurati
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.example.domain.Customer;
-import com.example.domain.CustomerRepository;
+import com.example.domain.Board;
+import com.example.domain.BoardRepository;
+import com.example.domain.Deck;
+import com.example.domain.DeckRepository;
 import com.example.domain.User;
 import com.example.domain.UserRepository;
 
@@ -26,43 +29,47 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class TrelloApplication {
 	private static final Logger log = LoggerFactory.getLogger(TrelloApplication.class);
+
 	public static void main(String[] args) {
 		SpringApplication.run(TrelloApplication.class, args);
 	}
-	
+
 	@Bean
 	public ServletRegistrationBean h2servletRegistration() {
 		ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
 		registration.addUrlMappings("/console/*");
 		return registration;
 	}
-	
+
 	@Bean
-    public Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)  
-          .select()                                  
-          .apis(RequestHandlerSelectors.any())              
-          .paths(PathSelectors.any())                          
-          .build();                                           
-    }
-	
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
+				.paths(PathSelectors.any()).build();
+	}
+
 	@Bean
-	public CommandLineRunner demo(UserRepository repository) {
+	public CommandLineRunner demo(UserRepository ur, BoardRepository br, DeckRepository dr,
+			PasswordEncoder passwordEncoder) {
 		return (args) -> {
 			// save a couple of customers
-			repository.save(new User("test@t.com", "테스트유저","ps123"));
+
+			ur.save(new User("test@t.com", "테스트유저", passwordEncoder.encode("ps123")));
+			br.save(new Board("보드1"));
+			br.save(new Board("보드2"));
+			dr.save(new Deck("to do", br.findOne((long) 1)));
 			// fetch all customers
 			log.info("Customers found with findAll():");
 			log.info("-------------------------------");
-			for(User user: repository.findAll()) {
+			for (User user : ur.findAll()) {
 				log.info(user.toString());
 			}
 
 		};
 	}
-	
+
 	@Bean
-	public BCryptPasswordEncoder bcrypt(){
+	public BCryptPasswordEncoder bcrypt() {
 		return new BCryptPasswordEncoder();
 	}
+
 }
