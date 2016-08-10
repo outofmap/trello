@@ -4,15 +4,21 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		maven {
+      		url "https://plugins.gradle.org/m2/"
+    	}
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+		classpath ("gradle.plugin.com.boxfuse.client:flyway-release:4.0.3")
+		
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'spring-boot' 
+apply plugin: 'spring-boot'
+apply plugin: 'org.flywaydb.flyway'
 
 jar {
 	baseName = 'trello'
@@ -29,6 +35,7 @@ bootRun {
     addResources = true
 }
 
+
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.springframework.boot:spring-boot-starter-web")
@@ -37,7 +44,8 @@ dependencies {
     compile ("org.thymeleaf:thymeleaf-spring4:3.0.0.RELEASE")
     compile ("org.thymeleaf:thymeleaf:3.0.0.RELEASE")
     compile("org.springframework.boot:spring-boot-devtools")
-    compile("com.h2database:h2")
+    compile("com.h2database:h2:1.4.192")
+    compile ('org.flywaydb:flyway-core:4.0.3')
    	compile("org.projectlombok:lombok:1.16.8")
    	compile(group: 'io.springfox', name: 'springfox-swagger2', version: '2.4.0')
    	compile(group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.4.0')
@@ -49,5 +57,4 @@ dependencies {
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     
-	
 }
