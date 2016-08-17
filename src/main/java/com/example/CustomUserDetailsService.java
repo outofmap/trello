@@ -19,28 +19,28 @@ import com.example.domain.UserRepository;
 
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
-	private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
-	@Autowired
-	private UserRepository ur;
+    private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
+    @Autowired
+    private UserRepository ur;
 
-	@Transactional
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		logger.debug("load user email:{}", email);
-		com.example.domain.User user = ur.findByEmail(email);
-		logger.debug("loaded user:{}", user);
-		List<GrantedAuthority> authorities = buildUserAuthority();
-		return buildUserForAuthentication(user, authorities);
-	}
+    @Transactional
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        logger.debug("load user email:{}", email);
+        com.example.domain.User user = ur.findByEmail(email);
+        logger.debug("loaded user:{}", user);
+        List<GrantedAuthority> authorities = buildUserAuthority();
+        return buildUserForAuthentication(user, authorities);
+    }
 
-	private User buildUserForAuthentication(com.example.domain.User user, List<GrantedAuthority> authorities) {
-		return new User(user.getUserName(), user.getPassword(), true, true, true, true, authorities);
-	}
+    private User buildUserForAuthentication(com.example.domain.User user, List<GrantedAuthority> authorities) {
+        return new User(user.getUserName(), user.getPassword(), true, true, true, true, authorities);
+    }
 
-	private List<GrantedAuthority> buildUserAuthority() {
+    private List<GrantedAuthority> buildUserAuthority() {
 
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(0);
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		return authorities;
-	}
+        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(0);
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        return authorities;
+    }
 }

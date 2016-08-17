@@ -84,7 +84,7 @@ public class Thymeleaf3AutoConfiguration {
         }
         return engine;
     }
-    
+
     @Bean
     public ITemplateResolver templateResolver() {
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
